@@ -2,23 +2,19 @@ import React, { Component } from 'react'
 
 class GifList extends Component {
 
-  //not sure this is doing anything
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.gifs === nextState.gifs) {
-      return false
-    }
-    return true
+  renderGifs() {
+    return this.props.gifs.map(gif => {
+      return <img key={gif.id} src={gif.images.original.url} alt={gif.title} />
+    })
   }
 
-
   render() {
-    debugger
     return (
-      <div>
+      < div >
         <ul>
-          {this.props.gifs.forEach(gif => <li>{gif}</li>)}
+          {this.renderGifs()}
         </ul>
-      </div>
+      </div >
     )
   }
 }

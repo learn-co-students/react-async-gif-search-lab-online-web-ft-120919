@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-import GifList from '../components/GifList'
-import GifSearch from '../components/GifSearch'
+import GifList from '../components/GifList.js'
+import GifSearch from '../components/GifSearch.js'
 
 class GifListContainer extends Component {
 
@@ -14,19 +14,17 @@ class GifListContainer extends Component {
     this.fetchGifs(event.target.name)
   }
 
-  //not sure this is doing anythign
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.gifs === nextState.gifs) {
-      return false
-    }
-    return true
-  }
-
   render() {
     return (
-      <div><GifList gifs={this.state.gifs} /></div>,
-      <div><GifSearch handleSubmit={this.submitHandler} /></div>
+      <div>
+        <GifSearch handleSubmit={this.submitHandler} />
+        <GifList gifs={this.state.gifs} />
+      </div>
     )
+  }
+
+  componentDidMount() {
+    this.fetchGifs('dolphins')
   }
 
   fetchGifs(searchWord) {
@@ -37,6 +35,7 @@ class GifListContainer extends Component {
         this.setState({
           gifs: gifs
         })
+        console.log(this.state.gifs)
       })
   }
 
