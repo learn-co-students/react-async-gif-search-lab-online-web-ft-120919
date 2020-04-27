@@ -11,16 +11,16 @@ class GifListContainer extends React.Component {
     }
   }//constructor
 
-  executeSearch(query) {
-    fetch(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=0Zfhh8yzd2w8Nm6xaWWYcsX2kU28r6LR&rating=g`)
+  executeSearch = (query) => {
+    fetch(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=0Zfhh8yzd2w8Nm6xaWWYcsX2kU28r6LR&rating=g&limit=3`)
       .then(resp => resp.json())
-        .then((data) => {
-            //onsole.log(data)
+        .then((gifs) => {
+            console.log(gifs)
             //debugger 
             this.setState({
-                gifs: data.slice(0,3)
+                gifs: gifs.data
             })
-            // this.setState({gifs: data.map(gif => ({url: gif.images.original.url}) )})
+            console.log(this.state)
         })
   }//executeSearch
 
@@ -28,7 +28,7 @@ class GifListContainer extends React.Component {
     return (
       <div>
         <GifList gifs={this.state.gifs} />
-        <GifSearch submitHandler={this.executeSearch} />
+        <GifSearch submitHandler={this.executeSearch.bind(this)} />
       </div>
     )//return
   }//render
@@ -36,3 +36,5 @@ class GifListContainer extends React.Component {
 }//class
 
 export default GifListContainer;
+
+// this.setState({gifs: data.map(gif => ({url: gif.images.original.url}) )})
