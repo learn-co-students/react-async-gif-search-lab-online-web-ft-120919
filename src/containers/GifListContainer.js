@@ -15,8 +15,11 @@ class GifListContainer extends React.Component {
     fetch(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=0Zfhh8yzd2w8Nm6xaWWYcsX2kU28r6LR&rating=g`)
       .then(resp => resp.json())
         .then((data) => {
-            console.log(data)
-            debugger 
+            //onsole.log(data)
+            //debugger 
+            this.setState({
+                gifs: data.slice(0,3)
+            })
             // this.setState({gifs: data.map(gif => ({url: gif.images.original.url}) )})
         })
   }//executeSearch
