@@ -40,7 +40,7 @@ class GifListContainer extends Component {
 
   loadGifs = () => {
     // Get your API key at https://developers.giphy.com/docs/api/#quick-start-guide
-    const apiKey = 'l5GT870wfsA6rhmHeCkSQDatQyXUs4LY'
+    const apiKey = ''
     fetch(`https://api.giphy.com/v1/gifs/search?q=${this.state.searchInput}&api_key=${apiKey}&rating=g`)
       .then(response => response.json())
       .then(json => {
